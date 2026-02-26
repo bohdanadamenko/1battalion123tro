@@ -49,10 +49,6 @@ test.describe('1-Б 123 ОБР ТРО — Site E2E Tests', () => {
       await expect(hero.locator('a', { hasText: 'Бойовий шлях' })).toBeVisible();
       await expect(hero.locator('button', { hasText: 'Долучитись' })).toBeVisible();
     });
-
-    await test.step('блок статистики (цифра 253)', async () => {
-      await expect(hero.locator('text=253')).toBeVisible();
-    });
   });
 
   test('03 — Timeline: усі 6 карток бойового шляху', async ({ page }) => {
@@ -66,6 +62,10 @@ test.describe('1-Б 123 ОБР ТРО — Site E2E Tests', () => {
       await expect(history.locator('text=Оборона Миколаєва')).toBeVisible();
       await expect(history.locator('text=Дніпровські острови')).toBeVisible();
       await expect(history.locator('text=Харківщина')).toBeVisible();
+    });
+
+    await test.step('блок статистики (цифра 253) під заголовком', async () => {
+      await expect(page.locator('#history').locator('text=253').first()).toBeVisible();
     });
 
     await test.step('бейдж «Активно» на поточній кампанії', async () => {

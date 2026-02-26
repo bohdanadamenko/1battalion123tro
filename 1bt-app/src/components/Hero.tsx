@@ -77,20 +77,7 @@ const Hero = () => {
               </button>
             </div>
 
-            <div className="mt-14 flex gap-8 pt-8 border-t border-white/5 justify-center lg:justify-start">
-              {[
-                { num: '253', label: 'Нагороджених' },
-                { num: '2022', label: 'Рік заснування' },
-                { num: '4', label: 'Напрямки бойових дій' },
-              ].map((s) => (
-                <div key={s.label} className="text-center">
-                  <div className="text-3xl md:text-4xl font-black text-white tracking-tight">
-                    {s.num}
-                  </div>
-                  <div className="text-xs md:text-sm text-slate-500 mt-1 uppercase tracking-wider">{s.label}</div>
-                </div>
-              ))}
-            </div>
+
           </div>
 
           {/* Tactical Military Radar Effect - Scaled up & Intensified */}
