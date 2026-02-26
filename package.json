@@ -1,0 +1,25 @@
+{
+  "name": "1-bt-123-tro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "npm test --prefix 1bt-app",
+    "test:ui": "npm run test:ui --prefix 1bt-app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bohdanadamenko/1-bt-123-tro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bohdanadamenko/1-bt-123-tro/issues"
+  },
+  "homepage": "https://github.com/bohdanadamenko/1-bt-123-tro#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

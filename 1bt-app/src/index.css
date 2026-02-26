@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme {
+  --color-darkBg: #04080e;
+  --color-darkerBg: #010204;
+  --color-uaBlue: #005ce6;
+  --color-uaYellow: #ffdf2a;
+  --font-main: "Rajdhani", sans-serif;
+  
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-20px) translateX(10px); }
+  66% { transform: translateY(10px) translateX(-15px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* === Scroll Reveal System ===
+   Elements start hidden. JavaScript adds .reveal when they enter the viewport.
+   Specific animation type is set by a modifier class. */
+
+.sr {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+              transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.sr.sr-up    { transform: translateY(28px); }
+.sr.sr-left  { transform: translateX(-24px); }
+.sr.sr-right { transform: translateX(24px); }
+.sr.sr-scale { transform: scale(0.92); }
+
+/* The revealed state */
+.sr.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* Staggered delays */
+.sr-d1 { transition-delay: 0.08s; }
+.sr-d2 { transition-delay: 0.16s; }
+.sr-d3 { transition-delay: 0.24s; }
+.sr-d4 { transition-delay: 0.32s; }
+.sr-d5 { transition-delay: 0.40s; }
+
+/* Hero section fires immediately on load (no scroll needed) */
+.sr-hero { opacity: 0; transform: translateY(24px); animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+.sr-hero-logo { opacity: 0; transform: scale(0.92); animation: scaleIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+
+
+@utility glass-panel {
+  background-color: rgb(255 255 255 / 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.35);
+  border-radius: 1.25rem;
+}
+
+@utility glass-nav {
+  background-color: rgb(4 8 14 / 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  box-shadow: 0 8px 32px -8px rgba(0,0,0,0.5);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #a16207 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Tactical Micro-Grid Background */
+.bg-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+.animate-scanline {
+  animation: scanlines 4s linear infinite;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(16, 185, 129, 0.05) 10%,
+    rgba(16, 185, 129, 0.2) 50%,
+    rgba(16, 185, 129, 0.05) 90%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+/* Noise grain overlay — disabled for performance */
+/* .noise-overlay { } */
+
+/* Custom Scrollbar for better UI */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-darkerBg);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 5px;
+  border: 2px solid var(--color-darkerBg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}

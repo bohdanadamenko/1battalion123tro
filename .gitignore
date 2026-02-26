@@ -1,0 +1,8 @@
+node_modules
+dist
+1bt-app/dist
+1bt-app/test-results
+1bt-app/tsconfig.app.tsbuildinfo
+1bt-app/tsconfig.node.tsbuildinfo
+1bt-app/vite.config.d.ts
+1bt-app/vite.config.js
