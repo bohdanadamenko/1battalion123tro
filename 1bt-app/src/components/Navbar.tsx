@@ -28,7 +28,7 @@ const Navbar = () => {
           {/* Logo + Name */}
           <a href="#home" className="flex items-center gap-1.5 md:gap-2.5 group">
             <img src="/logo.jpeg" alt="Лого" className="h-7 w-7 md:h-8 md:w-8 rounded-full object-cover ring-1 ring-white/20 group-hover:ring-uaBlue transition-all" />
-            <span className="font-bold text-base tracking-tighter md:tracking-wide text-white/80 group-hover:text-white transition-colors whitespace-nowrap">
+            <span className="font-bold text-[15px] md:text-[17px] tracking-tighter md:tracking-wide text-white/80 group-hover:text-white transition-colors whitespace-nowrap">
               1Б · 123 ОБР ТРО
             </span>
           </a>
@@ -59,7 +59,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={() => document.dispatchEvent(new Event('openJoinModal'))}
-              className="bg-uaBlue text-white text-xs font-bold px-3 py-1.5 rounded-full hover:bg-blue-500 transition-colors active:scale-95 shadow-lg shadow-uaBlue/20"
+              className="bg-uaBlue text-white text-[11px] font-bold px-3 py-1.5 rounded-full hover:bg-blue-500 transition-colors active:scale-95 shadow-lg shadow-uaBlue/20"
             >
               Долучитись
             </button>
