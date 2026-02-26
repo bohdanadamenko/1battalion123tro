@@ -200,10 +200,10 @@ const Timeline = () => {
               { num: '4', label: 'Напрямки бойових дій' },
             ].map((s) => (
               <div key={s.label} className="text-left">
-                <div className="text-3xl md:text-4xl font-black text-white tracking-tight">
+                <div className="text-xl md:text-2xl font-black text-white tracking-tight">
                   {s.num}
                 </div>
-                <div className="text-xs md:text-sm text-slate-500 mt-1 uppercase tracking-wider font-bold">{s.label}</div>
+                <div className="text-sm md:text-base text-slate-500 mt-1">{s.label}</div>
               </div>
             ))}
           </div>
