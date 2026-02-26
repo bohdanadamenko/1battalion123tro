@@ -59,7 +59,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={() => document.dispatchEvent(new Event('openJoinModal'))}
-              className="bg-uaBlue text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-500 transition-colors active:scale-95"
+              className="bg-uaBlue text-white text-xs font-bold px-3 py-1.5 rounded-full hover:bg-blue-500 transition-colors active:scale-95 shadow-lg shadow-uaBlue/20"
             >
               Долучитись
             </button>
