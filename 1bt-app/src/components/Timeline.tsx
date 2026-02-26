@@ -192,20 +192,20 @@ const Timeline = () => {
           <p className="text-sm font-bold tracking-[0.15em] text-uaBlue uppercase mb-2">Хронологія</p>
           <h2 className="text-6xl md:text-7xl font-black text-white leading-none mb-8">Бойовий Шлях</h2>
 
-          {/* Moved Stats from Hero */}
-          <div className="flex flex-wrap gap-8 py-8 border-y border-white/5 justify-start">
-            {[
-              { num: '253', label: 'Нагороджених' },
-              { num: '2022', label: 'Рік заснування' },
-              { num: '4', label: 'Напрямки бойових дій' },
-            ].map((s) => (
-              <div key={s.label} className="text-left">
-                <div className="text-xl md:text-2xl font-black text-white tracking-tight">
-                  {s.num}
+          {/* Styled Stat Badge */}
+          <div className="inline-flex py-8">
+            <div className="glass-panel rounded-2xl p-5 md:p-6 border border-white/10 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-uaBlue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex items-center gap-4 md:gap-6 relative z-10">
+                <div className="text-4xl md:text-5xl font-black text-white tracking-tight leading-none">
+                  4
                 </div>
-                <div className="text-sm md:text-base text-slate-500 mt-1">{s.label}</div>
+                <div className="h-10 w-px bg-white/10" />
+                <div className="text-sm md:text-base font-bold text-slate-300 leading-tight">
+                  Напрямки <br className="hidden md:block" />бойових дій
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
 

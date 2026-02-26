@@ -64,8 +64,9 @@ test.describe('1-Б 123 ОБР ТРО — Site E2E Tests', () => {
       await expect(history.locator('text=Харківщина')).toBeVisible();
     });
 
-    await test.step('блок статистики (цифра 253) під заголовком', async () => {
-      await expect(page.locator('#history').locator('text=253').first()).toBeVisible();
+    await test.step('блок статистики (4 напрямки) під заголовком', async () => {
+      await expect(page.locator('#history').locator('text=4').first()).toBeVisible();
+      await expect(page.locator('#history').locator('text=Напрямки бойових дій')).toBeVisible();
     });
 
     await test.step('бейдж «Активно» на поточній кампанії', async () => {
