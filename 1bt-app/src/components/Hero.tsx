@@ -81,19 +81,19 @@ const Hero = () => {
           </div>
 
           {/* Tactical Military Radar Effect - Scaled up & Intensified */}
-          <div className="anim-scale-in delay-1 flex justify-center items-center relative z-0 mt-8 lg:mt-0 w-[360px] md:w-[480px] h-[360px] md:h-[480px] mx-auto lg:mx-0">
+          <div className="anim-scale-in delay-1 flex justify-center items-center relative z-0 mt-8 lg:mt-0 w-[95vw] sm:w-[360px] md:w-[480px] aspect-square max-w-full mx-auto lg:mx-0">
             {/* Radar Grid Lines & Rings - Increased thickness and scale */}
-            <div className="absolute w-[360px] md:w-[480px] h-[360px] md:h-[480px] rounded-full border-2 border-[#10b981]/30" />
-            <div className="absolute w-[260px] md:w-[340px] h-[260px] md:h-[340px] border-2 border-[#10b981]/30 border-dashed rounded-full animate-spin" style={{ animationDuration: '80s' }} />
-            <div className="absolute w-[160px] md:w-[200px] h-[160px] md:h-[200px] border-2 border-[#10b981]/15 rounded-full" />
+            <div className="absolute inset-0 rounded-full border-2 border-[#10b981]/30" />
+            <div className="absolute w-[72%] h-[72%] border-2 border-[#10b981]/30 border-dashed rounded-full animate-spin" style={{ animationDuration: '80s' }} />
+            <div className="absolute w-[44%] h-[44%] border-2 border-[#10b981]/15 rounded-full" />
             
             {/* Crosshairs */}
-            <div className="absolute w-[360px] md:w-[480px] h-[2px] bg-[#10b981]/30" />
-            <div className="absolute w-[2px] h-[360px] md:h-[480px] bg-[#10b981]/30" />
+            <div className="absolute w-full h-[2px] bg-[#10b981]/30" />
+            <div className="absolute w-[2px] h-full bg-[#10b981]/30" />
             
             {/* The sweeping radar beam - Intensified opacity */}
             <div 
-              className="absolute w-[360px] md:w-[480px] h-[360px] md:h-[480px] rounded-full pointer-events-none animate-spin"
+              className="absolute inset-0 rounded-full pointer-events-none animate-spin"
               style={{
                 background: 'conic-gradient(from 0deg, transparent 70%, rgba(16, 185, 129, 0.15) 85%, rgba(16, 185, 129, 0.9) 100%)',
                 animationDuration: '7s',
@@ -102,7 +102,7 @@ const Hero = () => {
             />
 
             {/* CRT Scanline Overlay */}
-            <div className="absolute w-[360px] md:w-[480px] h-[360px] md:h-[480px] rounded-full overflow-hidden pointer-events-none z-10 opacity-70">
+            <div className="absolute inset-0 rounded-full overflow-hidden pointer-events-none z-10 opacity-70">
               <div className="w-full h-full animate-scanline" />
             </div>
 
@@ -136,12 +136,12 @@ const Hero = () => {
               </div>
             ))}
 
-            <div style={{ animation: 'float 7s ease-in-out infinite', willChange: 'transform' }} className="relative group z-10">
+            <div style={{ animation: 'float 7s ease-in-out infinite', willChange: 'transform' }} className="relative group z-10 w-[66%] h-[66%]">
               {/* Outer Glow */}
               <div className="absolute inset-0 rounded-full opacity-40 blur-3xl transition-opacity duration-500 group-hover:opacity-70" style={{ background: 'radial-gradient(circle, #005ce6 0%, transparent 70%)' }} />
               
               {/* Main Physical Body of the 3D Badge */}
-              <div className="relative w-[240px] md:w-[320px] aspect-square rounded-full overflow-hidden bg-[#050a14] border-[3px] border-[#1a2540]"
+              <div className="relative w-full h-full rounded-full overflow-hidden bg-[#050a14] border-[3px] border-[#1a2540]"
                 style={{
                   boxShadow: '0 40px 80px -20px rgba(0,92,230,0.8), inset 0 -20px 40px rgba(0,0,0,1), inset 0 6px 15px rgba(255,255,255,0.5)',
                 }}
