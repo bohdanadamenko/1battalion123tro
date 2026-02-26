@@ -190,7 +190,23 @@ const Timeline = () => {
         {/* Header */}
         <div ref={headRef} className={`sr sr-up mb-12 ${headVisible ? 'reveal' : ''}`}>
           <p className="text-sm font-bold tracking-[0.15em] text-uaBlue uppercase mb-2">Хронологія</p>
-          <h2 className="text-6xl md:text-7xl font-black text-white leading-none">Бойовий Шлях</h2>
+          <h2 className="text-6xl md:text-7xl font-black text-white leading-none mb-8">Бойовий Шлях</h2>
+
+          {/* Moved Stats from Hero */}
+          <div className="flex flex-wrap gap-8 py-8 border-y border-white/5 justify-start">
+            {[
+              { num: '253', label: 'Нагороджених' },
+              { num: '2022', label: 'Рік заснування' },
+              { num: '4', label: 'Напрямки бойових дій' },
+            ].map((s) => (
+              <div key={s.label} className="text-left">
+                <div className="text-3xl md:text-4xl font-black text-white tracking-tight">
+                  {s.num}
+                </div>
+                <div className="text-xs md:text-sm text-slate-500 mt-1 uppercase tracking-wider font-bold">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Bento Grid */}

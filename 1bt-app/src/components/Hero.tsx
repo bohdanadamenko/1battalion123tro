@@ -77,24 +77,11 @@ const Hero = () => {
               </button>
             </div>
 
-            <div className="mt-14 flex gap-8 pt-8 border-t border-white/5 justify-center lg:justify-start">
-              {[
-                { num: '253', label: 'Нагороджених' },
-                { num: '2022', label: 'Рік заснування' },
-                { num: '4', label: 'Напрямки бойових дій' },
-              ].map((s) => (
-                <div key={s.label} className="text-center">
-                  <div className="text-4xl font-black text-white tracking-tight">
-                    {s.num}
-                  </div>
-                  <div className="text-sm text-slate-500 mt-1 uppercase tracking-wider">{s.label}</div>
-                </div>
-              ))}
-            </div>
+
           </div>
 
           {/* Tactical Military Radar Effect - Scaled up & Intensified */}
-          <div className="anim-scale-in delay-1 flex justify-center items-center relative z-0 mt-8 lg:mt-0 w-[360px] md:w-[480px] h-[360px] md:h-[480px]">
+          <div className="anim-scale-in delay-1 flex justify-center items-center relative z-0 mt-8 lg:mt-0 w-[360px] md:w-[480px] h-[360px] md:h-[480px] mx-auto lg:mx-0">
             {/* Radar Grid Lines & Rings - Increased thickness and scale */}
             <div className="absolute w-[360px] md:w-[480px] h-[360px] md:h-[480px] rounded-full border-2 border-[#10b981]/30" />
             <div className="absolute w-[260px] md:w-[340px] h-[260px] md:h-[340px] border-2 border-[#10b981]/30 border-dashed rounded-full animate-spin" style={{ animationDuration: '80s' }} />
