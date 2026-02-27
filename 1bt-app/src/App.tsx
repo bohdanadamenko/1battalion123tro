@@ -21,10 +21,12 @@ function App() {
   const handleJoinSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setJoinState('success');
-    setTimeout(() => {
-      setJoinState('idle');
-      setIsJoinModalOpen(false);
-    }, 2500);
+  };
+
+  const closeJoinModal = () => {
+    setIsJoinModalOpen(false);
+    // Add small delay to reset state after modal fade out animation finishes
+    setTimeout(() => setJoinState('idle'), 300);
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -60,7 +62,7 @@ function App() {
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-4"
           style={{ animation: 'fadeUp 0.2s ease both' }}
-          onClick={(e) => { if (e.target === e.currentTarget) setIsJoinModalOpen(false); }}
+          onClick={(e) => { if (e.target === e.currentTarget) closeJoinModal(); }}
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-[#010204]/85 backdrop-blur-xl" />
@@ -94,13 +96,14 @@ function App() {
                   <Shield size={22} className="text-uaBlue" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[11px] font-bold tracking-[0.2em] text-uaBlue uppercase mb-1">Рекрутинг · В/Ч А7052</p>
-                  <h2 className="text-2xl font-black text-white leading-tight">Заявка на Долучення</h2>
-                  <p className="text-slate-500 text-sm mt-1">Залиште дані — рекрутер зв'яжеться найближчим часом.</p>
+                  <p className="text-[11px] font-bold tracking-[0.2em] text-uaBlue uppercase mb-1">
+                    Рекрутинг <span className="hidden sm:inline">·</span><br className="sm:hidden" /> В/Ч А7052
+                  </p>
+                  <h2 className="text-xl md:text-2xl font-black text-white leading-tight">Заявка на Долучення</h2>
                 </div>
                 <button
                   data-testid="modal-close"
-                  onClick={() => setIsJoinModalOpen(false)}
+                  onClick={closeJoinModal}
                   className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-500 hover:text-white transition-all flex-shrink-0"
                 >
                   <X size={16} />
@@ -119,7 +122,13 @@ function App() {
                       </svg>
                     </div>
                     <div className="font-black text-xl text-white mb-1">Заявку прийнято!</div>
-                    <div className="text-slate-400 text-sm">Ми зв'яжемося з вами найближчим часом.</div>
+                    <div className="text-slate-400 text-sm mb-6">Ми зв'яжемося з вами найближчим часом.</div>
+                    <button
+                      onClick={closeJoinModal}
+                      className="bg-uaBlue text-white font-bold h-12 px-8 rounded-xl hover:bg-blue-500 transition-colors shadow-lg shadow-uaBlue/20 active:scale-[0.98]"
+                    >
+                      ОК
+                    </button>
                   </div>
                 ) : (
                   <form onSubmit={handleJoinSubmit} className="flex flex-col gap-4">
@@ -130,7 +139,7 @@ function App() {
                         type="text"
                         required
                         placeholder="Іван Петренко"
-                        className="w-full bg-white/4 border border-white/8 hover:border-white/15 focus:border-uaBlue rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none transition-colors placeholder-slate-600"
+                        className="w-full bg-white/4 border border-white/8 hover:border-white/15 focus:border-uaBlue rounded-xl px-4 py-3 text-base text-slate-200 focus:outline-none transition-colors placeholder-slate-600"
                       />
                     </div>
 
@@ -141,7 +150,7 @@ function App() {
                         type="tel"
                         required
                         placeholder="+38 (099) 000-00-00"
-                        className="w-full bg-white/4 border border-white/8 hover:border-white/15 focus:border-uaBlue rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none transition-colors placeholder-slate-600"
+                        className="w-full bg-white/4 border border-white/8 hover:border-white/15 focus:border-uaBlue rounded-xl px-4 py-3 text-base text-slate-200 focus:outline-none transition-colors placeholder-slate-600"
                       />
                     </div>
 
@@ -153,7 +162,7 @@ function App() {
                       <textarea
                         rows={3}
                       placeholder="Військовий досвід, спеціальність, навички... Також можна вказати Telegram, email або інший зручний спосіб зв'язку."
-                        className="w-full bg-white/4 border border-white/8 hover:border-white/15 focus:border-uaBlue rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none transition-colors placeholder-slate-600 resize-none"
+                        className="w-full bg-white/4 border border-white/8 hover:border-white/15 focus:border-uaBlue rounded-xl px-4 py-3 text-base text-slate-200 focus:outline-none transition-colors placeholder-slate-600 resize-none"
                       />
                     </div>
 

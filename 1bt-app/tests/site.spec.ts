@@ -138,6 +138,11 @@ test.describe('1Б 123 ОБрТрО — Site E2E Tests', () => {
       await expect(page.locator('text=Заявку прийнято!')).toBeVisible({ timeout: 5000 });
       await expect(page.locator('text=Ми зв\'яжемося з вами найближчим часом.')).toBeVisible();
     });
+
+    await test.step('кнопка ОК закриває модалку', async () => {
+      await page.locator('button', { hasText: 'ОК' }).click();
+      await expect(page.locator('text=Заявка на Долучення')).not.toBeVisible({ timeout: 5000 });
+    });
   });
 
   test('06b — Join modal: закривається кнопкою ×', async ({ page }) => {
