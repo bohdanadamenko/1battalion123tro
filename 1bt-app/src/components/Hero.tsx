@@ -43,10 +43,10 @@ const Hero = () => {
 
           {/* Text — CSS entrance animations */}
           <div className="anim-fade-up">
-            <h1 className="font-black leading-[0.9] mb-8" style={{ fontSize: 'clamp(4rem, 9vw, 8rem)' }}>
+            <h1 className="font-black leading-[0.9] mb-8" style={{ fontSize: 'clamp(3.5rem, 7.5vw, 6.5rem)' }}>
               <span className="block text-white">1-й</span>
               <span className="block text-white">Батальйон</span>
-              <span className="block" style={{
+              <span className="block whitespace-nowrap" style={{
                 background: 'linear-gradient(135deg, #005ce6 0%, #33aaff 40%, #ffdf2a 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
