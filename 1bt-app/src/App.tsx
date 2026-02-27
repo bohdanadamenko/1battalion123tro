@@ -49,7 +49,7 @@ function App() {
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-5">
           <div className="flex items-center gap-3">
             <img src="/logo.jpeg" alt="Лого" className="h-7 w-7 rounded-full object-cover ring-1 ring-white/20" loading="lazy" />
-            <span className="font-bold text-sm text-white/60">1 Б 123 ОБР ТРО</span>
+            <span className="font-bold text-sm text-white/60">1Б 123 ОБрТрО</span>
           </div>
           <div className="text-slate-600 text-xs">&copy; {new Date().getFullYear()} Всі права захищено.</div>
         </div>

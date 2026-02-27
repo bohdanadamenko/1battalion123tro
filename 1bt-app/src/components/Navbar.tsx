@@ -29,7 +29,7 @@ const Navbar = () => {
           <a href="#home" className="flex items-center gap-2 group shrink-0">
             <img src="/logo.jpeg" alt="Лого" className="h-8 w-8 rounded-full object-cover ring-1 ring-white/20 group-hover:ring-uaBlue transition-all" />
             <span className="font-bold text-base tracking-tight md:tracking-wide text-white/90 group-hover:text-white transition-colors">
-              1 Б · 123 ОБР ТРО
+              1Б · 123 ОБрТрО
             </span>
           </a>
 

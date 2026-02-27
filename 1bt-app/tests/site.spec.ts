@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('1-Б 123 ОБР ТРО — Site E2E Tests', () => {
+test.describe('1Б 123 ОБрТрО — Site E2E Tests', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await page.waitForSelector('nav', { timeout: 10_000 });
@@ -32,9 +32,9 @@ test.describe('1-Б 123 ОБР ТРО — Site E2E Tests', () => {
   test('02 — Hero: заголовок, бейдж, CTA та статистика', async ({ page }) => {
     const hero = page.locator('#home');
 
-    await test.step('головний заголовок «1-й Батальйон 123 ТРО»', async () => {
+    await test.step('головний заголовок «1-й Батальйон 123 ОБрТрО»', async () => {
       await expect(hero.locator('text=1-й')).toBeVisible();
-      await expect(hero.locator('text=123 ТРО')).toBeVisible();
+      await expect(hero.locator('text=123 ОБрТрО')).toBeVisible();
     });
 
     await test.step('верхній бейдж В/Ч А7052', async () => {
@@ -158,7 +158,7 @@ test.describe('1-Б 123 ОБР ТРО — Site E2E Tests', () => {
     });
 
     await test.step('назва підрозділу та рядок копірайту', async () => {
-      await expect(page.locator('footer').locator('text=ОБР ТРО')).toBeVisible();
+      await expect(page.locator('footer').locator('text=ОБрТрО')).toBeVisible();
       await expect(page.locator('footer').locator('text=Всі права захищено')).toBeVisible();
     });
   });

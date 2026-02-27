@@ -51,7 +51,7 @@ const Hero = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-              }}>123 ТРО</span>
+              }}>123 ОБрТрО</span>
             </h1>
 
             {/* Styled subtitle */}
