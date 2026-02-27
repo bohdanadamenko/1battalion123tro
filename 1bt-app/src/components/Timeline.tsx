@@ -1,5 +1,5 @@
 import { useInView } from '../hooks/useInView';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 
 const historyData = [
   {
@@ -69,31 +69,11 @@ const Card = ({ item, delay = 0 }: { item: Item; delay?: number }) => {
 
   const isFeatured = item.size === 'featured';
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!cardRef.current) return;
-      const rect = cardRef.current.getBoundingClientRect();
-      setMousePos({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-    };
-
-    const currentCard = cardRef.current;
-    if (currentCard) {
-      currentCard.addEventListener('mousemove', handleMouseMove);
-      currentCard.addEventListener('mouseenter', () => setIsHovered(true));
-      currentCard.addEventListener('mouseleave', () => setIsHovered(false));
-    }
-
-    return () => {
-      if (currentCard) {
-        currentCard.removeEventListener('mousemove', handleMouseMove);
-        currentCard.removeEventListener('mouseenter', () => setIsHovered(true));
-        currentCard.removeEventListener('mouseleave', () => setIsHovered(false));
-      }
-    };
-  }, []);
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
 
   return (
     <div ref={inViewRef} className={`sr sr-up ${isVisible ? 'reveal' : ''}`} style={{ transitionDelay: `${delay}s` }}>
@@ -106,9 +86,12 @@ const Card = ({ item, delay = 0 }: { item: Item; delay?: number }) => {
           boxShadow: isFeatured ? `0 0 40px -5px ${item.accent}30` : undefined,
           transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
         }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         {/* Interactive Spotlight Hover Effect */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-0"
           style={{
             opacity: isHovered ? 1 : 0,
@@ -121,56 +104,56 @@ const Card = ({ item, delay = 0 }: { item: Item; delay?: number }) => {
           {/* Accent glow top edge */}
           <div className="absolute top-[-24px] left-[-24px] right-[-24px] h-[2px]" style={{ background: `linear-gradient(to right, ${item.accent}, transparent)` }} />
 
-        {/* Watermark year */}
-        <div
-          className="absolute bottom-0 right-0 font-bold leading-none select-none pointer-events-none tracking-tighter"
-          aria-hidden
-          style={{
-            color: item.accent,
-            opacity: 0.07,
-            fontSize: isFeatured ? '11rem' : '7rem',
-            lineHeight: 0.8,
-          }}
-        >
-          {item.year}
-        </div>
-
-        {/* Tag */}
-        <div className="flex items-center gap-2 mb-4">
-          <span
-            className="text-[11px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full flex items-center gap-1.5"
-            style={{ color: item.accent, background: `${item.accent}18`, border: `1px solid ${item.accent}35` }}
-          >
-            {item.active && <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />}
-            {item.tag}
-          </span>
-          <span className="text-xs text-slate-600">{item.date}</span>
-        </div>
-
-        {/* Title */}
-        <h3
-          className={`font-black text-white leading-tight mb-3 ${isFeatured ? 'text-3xl md:text-5xl' : 'text-xl md:text-2xl'}`}
-        >
-          {item.title}
-        </h3>
-
-        {/* Text */}
-        <p className={`text-slate-400 leading-relaxed ${isFeatured ? 'text-lg max-w-4xl' : 'text-base'}`}>
-          {item.text}
-        </p>
-
-        {/* Featured-only: glowing year pill bottom left */}
-        {isFeatured && (
+          {/* Watermark year */}
           <div
-            className="mt-8 inline-flex items-center gap-2 rounded-full px-4 py-2 text-base font-bold tracking-wide uppercase"
-            style={{ 
-              background: `${item.accent}20`, color: item.accent, border: `1px solid ${item.accent}40` 
+            className="absolute bottom-0 right-0 font-bold leading-none select-none pointer-events-none tracking-tighter"
+            aria-hidden
+            style={{
+              color: item.accent,
+              opacity: 0.07,
+              fontSize: isFeatured ? '11rem' : '7rem',
+              lineHeight: 0.8,
             }}
           >
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: item.accent }} />
-            Зараз
+            {item.year}
           </div>
-        )}
+
+          {/* Tag */}
+          <div className="flex items-center gap-2 mb-4">
+            <span
+              className="text-[11px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full flex items-center gap-1.5"
+              style={{ color: item.accent, background: `${item.accent}18`, border: `1px solid ${item.accent}35` }}
+            >
+              {item.active && <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />}
+              {item.tag}
+            </span>
+            <span className="text-xs text-slate-600">{item.date}</span>
+          </div>
+
+          {/* Title */}
+          <h3
+            className={`font-black text-white leading-tight mb-3 ${isFeatured ? 'text-3xl md:text-5xl' : 'text-xl md:text-2xl'}`}
+          >
+            {item.title}
+          </h3>
+
+          {/* Text */}
+          <p className={`text-slate-400 leading-relaxed ${isFeatured ? 'text-lg max-w-4xl' : 'text-base'}`}>
+            {item.text}
+          </p>
+
+          {/* Featured-only: glowing year pill bottom left */}
+          {isFeatured && (
+            <div
+              className="mt-8 inline-flex items-center gap-2 rounded-full px-4 py-2 text-base font-bold tracking-wide uppercase"
+              style={{
+                background: `${item.accent}20`, color: item.accent, border: `1px solid ${item.accent}40`
+              }}
+            >
+              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: item.accent }} />
+              Зараз
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -185,7 +168,7 @@ const Timeline = () => {
   const featured = historyData.find(d => d.size === 'featured')!;
 
   return (
-    <section id="history" className="py-28 relative">
+    <section id="history" className="py-10 md:py-16 relative">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div ref={headRef} className={`sr sr-up mb-12 ${headVisible ? 'reveal' : ''}`}>

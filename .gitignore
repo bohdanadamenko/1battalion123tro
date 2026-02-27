@@ -6,3 +6,5 @@ dist
 1bt-app/tsconfig.node.tsbuildinfo
 1bt-app/vite.config.d.ts
 1bt-app/vite.config.js
+.DS_Store
+**/.DS_Store

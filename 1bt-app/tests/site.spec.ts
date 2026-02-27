@@ -115,20 +115,37 @@ test.describe('1-Б 123 ОБР ТРО — Site E2E Tests', () => {
     });
   });
 
-  test('06 — Join modal: відкривається, заповнюється і закривається', async ({ page }) => {
+  test('06 — Join modal: відкривається, заповнюється, сабмітиться і закривається', async ({ page }) => {
     await test.step('кнопка «Долучитись» відкриває модалку', async () => {
       await page.locator('nav button', { hasText: 'Долучитись' }).first().click();
       await expect(page.locator('text=Заявка на Долучення')).toBeVisible({ timeout: 5000 });
     });
 
+    await test.step('лейбли полів форми видимі', async () => {
+      const modal = page.locator('[style*="scaleIn"]').or(page.locator('text=Заявка на Долучення').locator('..').locator('..'));
+      await expect(page.locator('text=Ім\'я та прізвище').first()).toBeVisible();
+      await expect(page.locator('text=Номер телефону').first()).toBeVisible();
+      await expect(page.locator('text=Досвід та інше').first()).toBeVisible();
+    });
+
     await test.step('форма містить поля для вводу', async () => {
-      await page.locator('input[type=text]').last().fill('Іван Franko');
+      await page.locator('input[type=text]').last().fill('Ivan Franko');
       await page.locator('input[type=tel]').fill('+380661234567');
     });
 
+    await test.step('відправка форми показує success стан', async () => {
+      await page.locator('button[type=submit]').last().click();
+      await expect(page.locator('text=Заявку прийнято!')).toBeVisible({ timeout: 5000 });
+      await expect(page.locator('text=Ми зв\'яжемося з вами найближчим часом.')).toBeVisible();
+    });
+  });
+
+  test('06b — Join modal: закривається кнопкою ×', async ({ page }) => {
+    await page.locator('nav button', { hasText: 'Долучитись' }).first().click();
+    await expect(page.locator('text=Заявка на Долучення')).toBeVisible({ timeout: 5000 });
+
     await test.step('кнопка × закриває модалку', async () => {
-      const xButton = page.locator('button').filter({ hasText: '' }).last();
-      await xButton.click();
+      await page.locator('[data-testid="modal-close"]').click();
       await expect(page.locator('text=Заявка на Долучення')).not.toBeVisible({ timeout: 5000 });
     });
   });
@@ -143,6 +160,27 @@ test.describe('1-Б 123 ОБР ТРО — Site E2E Tests', () => {
     await test.step('назва підрозділу та рядок копірайту', async () => {
       await expect(page.locator('footer').locator('text=ОБР ТРО')).toBeVisible();
       await expect(page.locator('footer').locator('text=Всі права захищено')).toBeVisible();
+    });
+  });
+
+  test('08 — Awards: порядок відомчих відзнак', async ({ page }) => {
+    await page.locator('#awards').scrollIntoViewIfNeeded();
+    const depSection = page.locator('#awards').locator('text=Відомчі відзнаки').locator('..');
+
+    await test.step('«Хрест Сил ТрО» є у списку відомчих відзнак', async () => {
+      await expect(page.locator('#awards').locator('text=Хрест Сил ТрО')).toBeVisible({ timeout: 5000 });
+    });
+
+    await test.step('«Іменна вогнепальна зброя» є у списку відомчих відзнак', async () => {
+      await expect(page.locator('#awards').locator('text=Іменна вогнепальна зброя')).toBeVisible();
+    });
+
+    await test.step('«Медаль «За поранення» є у списку', async () => {
+      await expect(page.locator('#awards').locator('text=За поранення')).toBeVisible();
+    });
+
+    await test.step('«Знак пошани» є у списку', async () => {
+      await expect(page.locator('#awards').locator('text=Знак пошани')).toBeVisible();
     });
   });
 });

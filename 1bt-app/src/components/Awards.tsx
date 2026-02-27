@@ -1,28 +1,28 @@
 import { useInView } from '../hooks/useInView';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 
 const stateAwards = [
-  { name: 'Орден "Богдана Хмельницького" III ст.', count: 2 },
-  { name: 'Орден "За мужність" III ст.', count: 11 },
-  { name: 'Медаль "За військову службу Україні"', count: 3 },
-  { name: 'Медаль "За оборону України"', count: 52, highlight: true },
+  { name: 'Орден "Богдана Хмельницького" III ст.', count: 2, img: '/ribbons/bohdan.svg' },
+  { name: 'Орден "За мужність" III ст.', count: 11, img: '/ribbons/courage.svg', wide: true },
+  { name: 'Медаль "За військову службу Україні"', count: 3, img: '/ribbons/mil_service.svg' },
+  { name: 'Медаль "За оборону України"', count: 52, highlight: true, img: '/ribbons/defense.svg' },
 ];
 const depAwards = [
-  { name: 'Іменна вогнепальна зброя', count: 4 },
-  { name: '"Знак пошани"', count: 7 },
-  { name: 'Медаль "За поранення"', count: 78, isRed: true },
-  { name: '"Захиснику України"', count: 3 },
-  { name: '"Золотий хрест"', count: 45, highlight: true },
-  { name: '"Хрест Сил ТрО"', count: 32 },
-  { name: 'Інші відзнаки', count: 16 },
+  { name: '"Хрест Сил ТрО"', count: 32, img: '/ribbons/tro_cross.svg' },
+  { name: 'Медаль "За поранення"', count: 78, isRed: true, img: '/ribbons/wound.svg' },
+  { name: '"Знак пошани"', count: 7, img: '/ribbons/honor.svg' },
+  { name: '"Захиснику України"', count: 3, img: '/ribbons/defender.svg' },
+  { name: '"Золотий хрест"', count: 45, highlight: true, img: '/ribbons/golden_cross.svg' },
+  { name: 'Іменна вогнепальна зброя', count: 4, img: '/ribbons/gun.png', square: true },
+  { name: 'Інші відзнаки', count: 16, img: '/ribbons/ZSU.png', square: true },
 ];
 
-type AwardItem = { name: string; count: number; highlight?: boolean; isRed?: boolean };
+type AwardItem = { name: string; count: number; highlight?: boolean; isRed?: boolean; img?: string; wide?: boolean; square?: boolean };
 
 const AwardCard = ({ item, index }: { item: AwardItem; index: number }) => {
-  const isGold = index % 2 !== 0; // Alternate: 0=Blue, 1=Gold, 2=Blue...
+  const isGold = index % 2 !== 0;
   const color = isGold ? '#ffdf2a' : '#005ce6';
-  const glow = isGold 
+  const glow = isGold
     ? '0 0 10px rgba(255,223,42,0.4), 0 0 20px rgba(234,179,8,0.2)'
     : '0 0 10px rgba(0,92,230,0.5), 0 0 20px rgba(0,92,230,0.3)';
 
@@ -30,41 +30,24 @@ const AwardCard = ({ item, index }: { item: AwardItem; index: number }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!cardRef.current) return;
-      const rect = cardRef.current.getBoundingClientRect();
-      setMousePos({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-    };
-
-    const currentCard = cardRef.current;
-    if (currentCard) {
-      currentCard.addEventListener('mousemove', handleMouseMove);
-      currentCard.addEventListener('mouseenter', () => setIsHovered(true));
-      currentCard.addEventListener('mouseleave', () => setIsHovered(false));
-    }
-
-    return () => {
-      if (currentCard) {
-        currentCard.removeEventListener('mousemove', handleMouseMove);
-        currentCard.removeEventListener('mouseenter', () => setIsHovered(true));
-        currentCard.removeEventListener('mouseleave', () => setIsHovered(false));
-      }
-    };
-  }, []);
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
 
   return (
-    <div 
+    <div
       ref={cardRef}
       className={`glass-panel p-4 flex items-center gap-4 border transition-all duration-300 relative overflow-hidden group
       ${item.highlight ? 'border-uaBlue/30' : item.isRed ? 'border-red-500/20' : 'border-white/5 hover:border-white/10'}`}
       style={{ transform: isHovered ? 'translateY(-2px)' : 'translateY(0)' }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Interactive Spotlight Hover Effect */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-0"
         style={{
           opacity: isHovered ? 1 : 0,
@@ -73,12 +56,23 @@ const AwardCard = ({ item, index }: { item: AwardItem; index: number }) => {
       />
 
       <div className="relative z-10 flex items-center gap-4 w-full">
-        <div 
+        <div
           className="text-4xl font-bold tracking-tight min-w-[3.5rem] text-center"
           style={{ color, textShadow: glow }}
         >
           {item.count}
         </div>
+
+        {item.img ? (
+          <div className={`${
+            item.square ? 'w-8 h-8' : item.wide ? 'w-[45px] h-3.5 md:h-4' : 'w-10 h-3.5 md:h-4'
+          } shrink-0 rounded-[3px] overflow-hidden shadow-[inset_0_2px_4px_rgba(255,255,255,0.1),_0_2px_4px_rgba(0,0,0,0.5)]`}>
+            <img src={item.img} alt={`Іконка ${item.name}`} className="w-full h-full object-contain" />
+          </div>
+        ) : (
+          <div className="w-1.5 h-1.5 rounded-full bg-white/20 shrink-0 mx-[17px]" />
+        )}
+
         <div className="text-base text-slate-300 leading-snug">{item.name}</div>
       </div>
     </div>
@@ -87,7 +81,7 @@ const AwardCard = ({ item, index }: { item: AwardItem; index: number }) => {
 
 const StatCard = ({ item }: { item: { n: string; label: string; isGold: boolean } }) => {
   const color = item.isGold ? '#ffdf2a' : '#005ce6';
-  const shadow = item.isGold 
+  const shadow = item.isGold
     ? '0 0 15px rgba(255,223,42,0.4), 0 0 30px rgba(234,179,8,0.2)'
     : '0 0 15px rgba(0,92,230,0.5), 0 0 30px rgba(0,92,230,0.3)';
 
@@ -95,35 +89,22 @@ const StatCard = ({ item }: { item: { n: string; label: string; isGold: boolean 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!cardRef.current) return;
-      const rect = cardRef.current.getBoundingClientRect();
-      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    };
-
-    const currentCard = cardRef.current;
-    if (currentCard) {
-      currentCard.addEventListener('mousemove', handleMouseMove);
-      currentCard.addEventListener('mouseenter', () => setIsHovered(true));
-      currentCard.addEventListener('mouseleave', () => setIsHovered(false));
-    }
-    return () => {
-      if (currentCard) {
-        currentCard.removeEventListener('mousemove', handleMouseMove);
-        currentCard.removeEventListener('mouseenter', () => setIsHovered(true));
-        currentCard.removeEventListener('mouseleave', () => setIsHovered(false));
-      }
-    };
-  }, []);
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
 
   return (
-    <div 
+    <div
       ref={cardRef}
       className="glass-panel p-5 text-center border border-white/5 relative overflow-hidden group transition-all duration-300"
       style={{ transform: isHovered ? 'translateY(-2px)' : 'translateY(0)' }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-0"
         style={{
           opacity: isHovered ? 1 : 0,
@@ -147,7 +128,7 @@ const Awards = () => {
   const { ref: rightRef, isVisible: rightVisible } = useInView();
 
   return (
-    <section id="awards" className="py-28 relative">
+    <section id="awards" className="py-10 md:py-16 relative">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div ref={headRef} className={`sr sr-up mb-12 ${headVisible ? 'reveal' : ''}`}>

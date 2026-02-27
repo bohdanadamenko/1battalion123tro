@@ -89,14 +89,6 @@
   box-shadow: 0 8px 32px -8px rgba(0,0,0,0.5);
 }
 
-.text-gold-gradient {
-  background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #a16207 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  color: transparent !important;
-}
-
 /* Tactical Micro-Grid Background */
 .bg-grid {
   background-size: 50px 50px;

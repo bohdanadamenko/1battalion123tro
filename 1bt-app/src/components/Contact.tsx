@@ -17,7 +17,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-28 relative">
+    <section id="contact" className="py-10 md:py-16 relative">
       <div className="container mx-auto px-6">
         <div ref={headRef} className={`sr sr-up mb-12 ${headVisible ? 'reveal' : ''}`}>
           <p className="text-sm font-bold tracking-[0.15em] text-uaBlue uppercase mb-2">Зв'язок</p>
