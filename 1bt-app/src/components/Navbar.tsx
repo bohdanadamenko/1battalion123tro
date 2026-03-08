@@ -27,9 +27,9 @@ const Navbar = () => {
           isScrolled ? 'glass-nav shadow-[0_0_30px_rgba(0,92,230,0.15)]' : 'glass-nav'
         }`}>
           {/* Logo + Name */}
-          <a href="#home" className="flex items-center gap-2 group shrink-0">
-            <img src="/logo.jpeg" alt="Лого" className="h-8 w-8 rounded-full object-cover ring-1 ring-white/20 group-hover:ring-uaBlue transition-all" />
-            <span className="font-medium text-base tracking-wide text-white/90 group-hover:text-white transition-colors flex items-center gap-[0.2em]">
+          <a href="#home" className="flex items-center gap-1.5 md:gap-2 group shrink-0">
+            <img src="/logo.jpeg" alt="Лого" className="h-7 w-7 md:h-8 md:w-8 rounded-full object-cover ring-1 ring-white/20 group-hover:ring-uaBlue transition-all" />
+            <span className="font-medium text-sm md:text-base tracking-wide text-white/90 group-hover:text-white transition-colors flex items-center gap-[0.2em] whitespace-nowrap">
               <span><span className="text-[1.15em] leading-none">1</span>Б</span>
               <span>·</span>
               <span><span className="text-[1.15em] leading-none">123</span> ОБрТрО</span>
@@ -59,10 +59,10 @@ const Navbar = () => {
           </button>
 
           {/* Mobile right side: Doluchytsya + Burger */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-1 sm:gap-2">
             <button
               onClick={() => document.dispatchEvent(new Event('openJoinModal'))}
-              className="bg-uaBlue text-white text-base font-semibold px-4 py-2 rounded-full hover:bg-blue-500 transition-colors active:scale-95 shadow-lg shadow-uaBlue/20 whitespace-nowrap"
+              className="bg-uaBlue text-white text-sm sm:text-base font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-blue-500 transition-colors active:scale-95 shadow-lg shadow-uaBlue/20 whitespace-nowrap"
             >
               Долучитись
             </button>
