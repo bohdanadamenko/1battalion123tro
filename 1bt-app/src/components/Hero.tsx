@@ -43,7 +43,7 @@ const Hero = () => {
 
           {/* Text — CSS entrance animations */}
           <div className="anim-fade-up">
-            <h1 className="font-black leading-[0.9] mb-8" style={{ fontSize: 'clamp(2.25rem, 8vw, 6.5rem)' }}>
+            <h1 className="font-black leading-[0.9] mb-8" style={{ fontSize: 'clamp(1.75rem, 10vw, 6.5rem)' }}>
               <span className="block text-white">1-й</span>
               <span className="block text-white">Батальйон</span>
               <span className="block whitespace-nowrap" style={{
