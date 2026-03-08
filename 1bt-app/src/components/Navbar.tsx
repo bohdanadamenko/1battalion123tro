@@ -14,6 +14,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Головна', href: '#home' },
     { name: 'Шлях', href: '#history' },
+    { name: 'Дрони', href: '#drones' },
     { name: 'Нагороди', href: '#awards' },
     { name: 'Контакти', href: '#contact' },
   ];
@@ -28,8 +29,10 @@ const Navbar = () => {
           {/* Logo + Name */}
           <a href="#home" className="flex items-center gap-2 group shrink-0">
             <img src="/logo.jpeg" alt="Лого" className="h-8 w-8 rounded-full object-cover ring-1 ring-white/20 group-hover:ring-uaBlue transition-all" />
-            <span className="font-bold text-base tracking-tight md:tracking-wide text-white/90 group-hover:text-white transition-colors">
-              1Б · 123 ОБрТрО
+            <span className="font-medium text-base tracking-wide text-white/90 group-hover:text-white transition-colors flex items-center gap-[0.2em]">
+              <span><span className="text-[1.15em] leading-none">1</span>Б</span>
+              <span>·</span>
+              <span><span className="text-[1.15em] leading-none">123</span> ОБрТрО</span>
             </span>
           </a>
 
@@ -59,7 +62,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={() => document.dispatchEvent(new Event('openJoinModal'))}
-              className="bg-uaBlue text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-500 transition-colors active:scale-95 shadow-lg shadow-uaBlue/20 whitespace-nowrap"
+              className="bg-uaBlue text-white text-base font-semibold px-4 py-2 rounded-full hover:bg-blue-500 transition-colors active:scale-95 shadow-lg shadow-uaBlue/20 whitespace-nowrap"
             >
               Долучитись
             </button>

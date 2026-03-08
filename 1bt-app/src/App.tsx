@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Timeline from './components/Timeline';
 import Awards from './components/Awards';
 import Contact from './components/Contact';
+import Drones from './components/Drones';
 import { X, Send, Shield } from 'lucide-react';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
 
       <main>
         <Hero />
+        <Drones />
         <Timeline />
         <Awards />
         <Contact />
