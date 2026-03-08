@@ -40,11 +40,11 @@ const Drones = () => {
         <div ref={ref} className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className={`text-3xl md:text-5xl font-black mb-6 text-white leading-tight sr ${isVisible ? 'sr-up reveal' : ''}`}>
+            <h2 className="text-3xl md:text-5xl font-black mb-6 text-white leading-tight">
               Вітаю! До уваги <span className="text-uaBlue">молодих</span> та <span className="text-uaYellow">відважних:</span>
               <br className="hidden md:block" /> ДРОНИ
             </h2>
-            <div className={`w-24 h-1 bg-gradient-to-r from-uaBlue to-uaYellow mx-auto rounded-full sr sr-d1 ${isVisible ? 'sr-up reveal' : ''}`} />
+            <div className="w-24 h-1 bg-gradient-to-r from-uaBlue to-uaYellow mx-auto rounded-full" />
           </div>
 
           {/* Grid of benefits */}
